@@ -1,0 +1,43 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI - Tests
+
+on:
+  push:
+    branches: [ main ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    #Fazendo checkout no projeto
+    steps:
+    - uses: actions/checkout@v2
+    
+    #Configurando Node
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    
+    #Instalando dependências
+    - run: npm install
+    
+    #Executando os testes
+    - run: npm cypress run --headless
+    
+    #Fazendo merge dos relatórios
+    - run: npm run report:merge
+    
+    #Gerando relatório
+    - run: npm run report:generate
+    
+    #Upload dos artefatos
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.3
+      with:
+        path: mochawesome-report
