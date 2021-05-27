@@ -1,0 +1,16 @@
+{
+    "$schema": "https://on.cypress.io/cypress.schema.json",
+    "baseUrl": "https://purescript-react-realworld.netlify.app/",
+    "env": {
+        "apiUrl": "https://conduit.productionready.io/api",
+        "user":{
+            "email": "joose@gmail.com",
+           "password": "joose1234"
+        }
+    },
+    "video": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
+}
