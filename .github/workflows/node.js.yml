@@ -28,6 +28,7 @@ jobs:
     - run: npm install
     
     #Executando os testes
+      echo "Executando testes"
     - run: npx cypress run
     
     #Fazendo merge dos relatórios
