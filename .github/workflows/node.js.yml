@@ -28,7 +28,7 @@ jobs:
     - run: npm install
     
     #Executando os testes
-    - run: npm cypress run --headless
+    - run: npm cypress run
     
     #Fazendo merge dos relatórios
     - run: npm run report:merge
